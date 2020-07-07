@@ -22,6 +22,7 @@ function draw() {
   
   if (imageX > 200) {
     xVelocity = -2;
-    
+  } else if (imageX <0) {
+    xVelocity = 2;
   }
 }
