@@ -1,14 +1,14 @@
-/* global createCanvas background image loadImage */
+/* global createCanvas background image loadImage windowWidth windowHeight width height*/
 
-let dvdImage, imageX, xVelocity, imageY, yVelocity
-const globalVelocity = 5;
+let dvdImage, imageX, xVelocity, imageY, yVelocity;
+const globalVelocity = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   // We only want to load the logo once.
   imageX = 0;
   imageY = 0;
-  
+
   xVelocity = globalVelocity;
   yVelocity = globalVelocity;
   dvdImage = loadImage(
@@ -20,20 +20,18 @@ function draw() {
   background(220);
   // Draw the logo at the new position.
   image(dvdImage, imageX, imageY, 200, 150);
-  
-  
+
   imageX += globalVelocity;
   imageY += globalVelocity;
-  
+
   if (imageX > width - 200) {
     xVelocity = -globalVelocity;
-  } else if (imageX <0) {
+  } else if (imageX < 0) {
     xVelocity = globalVelocity;
   }
-    if (imageY > height - 150) {
+  if (imageY > height - 150) {
     yVelocity = -globalVelocity;
-  } else if (imageY <0) {
+  } else if (imageY < 0) {
     yVelocity = globalVelocity;
   }
-  
 }
