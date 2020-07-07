@@ -1,13 +1,16 @@
 /* global createCanvas background image loadImage */
 
-let dvdImage, imageX, xVelocity, imageY
+let dvdImage, imageX, xVelocity, imageY, yVelocity
+const globalVelocity = 5;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   // We only want to load the logo once.
   imageX = 0;
   imageY = 0;
-  xVelocity = 2;
+  
+  xVelocity = globalVelocity;
+  yVelocity = globalVelocity;
   dvdImage = loadImage(
     "https://cdn.glitch.com/2c8c05ca-f0b5-426e-9d1a-07a2d87bd9f6%2Fdvd-video.jpeg?v=1594094901767"
   );
@@ -19,18 +22,18 @@ function draw() {
   image(dvdImage, imageX, imageY, 200, 150);
   
   
-  imageX += xVelocity;
-  imageY += xVelocity;
+  imageX += globalVelocity;
+  imageY += globalVelocity;
   
-  if (imageX > 200) {
-    xVelocity = -1;
+  if (imageX > width - 200) {
+    xVelocity = -globalVelocity;
   } else if (imageX <0) {
-    xVelocity = 1;
+    xVelocity = globalVelocity;
   }
-    if (imageY > 250) {
-    xVelocity = -1;
+    if (imageY > height - 150) {
+    yVelocity = -globalVelocity;
   } else if (imageY <0) {
-    xVelocity = 1;
+    yVelocity = globalVelocity;
   }
   
 }
