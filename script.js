@@ -1,7 +1,9 @@
 /* global createCanvas background image loadImage windowWidth windowHeight width height*/
 
 let dvdImage, imageX, xVelocity, imageY, yVelocity;
-const globalVelocity = 1;
+const globalVelocity = 4;
+imageWidth = 200;
+imageHeight = 150;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -19,19 +21,31 @@ function setup() {
 function draw() {
   background(220);
   // Draw the logo at the new position.
-  image(dvdImage, imageX, imageY, 200, 150);
+  image(dvdImage, imageX, imageY, imageWidth, imageHeight);
 
-  imageX += globalVelocity;
-  imageY += globalVelocity;
+  imageX += xVelocity;
+  imageY += yVelocity;
 
-  if (imageX > width - 200) {
+// Horizontal collision
+  if (imageX > width - imageWidth) {
     xVelocity = -globalVelocity;
+    imageX = width - imageWidth;
   } else if (imageX < 0) {
     xVelocity = globalVelocity;
+    imageX = 0;
+    
   }
-  if (imageY > height - 150) {
+  
+  // Vertical collision
+  if (imageY > height - imageHeight) {
     yVelocity = -globalVelocity;
+    imageY = height - imageHeight;
   } else if (imageY < 0) {
     yVelocity = globalVelocity;
+    imageY = 0;
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
